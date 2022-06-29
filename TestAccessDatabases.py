@@ -23,7 +23,7 @@ import matplotlib
 #cf.go_offline() # required to use plotly offline (no account required).
 #py.init_notebook_mode() # graphs charts inline (IPython).
 
-url= "https://data.cityofchicago.org/resource/85ca-t3if.json?$$app_token=5I2MKS1rZ49obGC9dtfgr2Pgi$where=crash_date%20between$20'2021-01-01T00:00:00'%20and%20'2022-01-01T00:00:00'"
+url= "https://data.cityofchicago.org/resource/85ca-t3if.json?$$app_token=<API TOKEN>$where=crash_date%20between$20'2021-01-01T00:00:00'%20and%20'2022-01-01T00:00:00'"
 # this URL generates an "invalid app token error" but the app token is cut-and-pasted from CHI's website
 
 url2="https://data.cityofchicago.org/resource/85ca-t3if.json?$where=crash_date%20between%20%272021-01-01T00:00:00%27%20and%20%272022-01-01T00:00:00%27"
@@ -36,7 +36,7 @@ dooring = crashes[crashes['dooring_i'].notna()]
 
 
 from sodapy import Socrata
-client=Socrata('data.cityofchicago.org','5I2MKS1rZ49obGC9dtfgr2Pgi')
+client=Socrata('data.cityofchicago.org','<API TOKEN>')
 # chicago data, App_token
 results=client.get('85ca-t3if',limit=2000)
 # this works - pulls 2K crash records
@@ -51,7 +51,7 @@ results_2=client.get('85ca-t3if',where= "crash_date>'21-01-01T00:00:00'",limit=2
 # This works!
 
 # working examples
-url = 'https://data.cityofchicago.org/resource/85ca-t3if.json?$$app_token=5I2MKS1rZ49obGC9dtfgr2Pgi&$where=crash_date%20between%20%272021-01-01T00:00:00%27%20and%20%272022-01-01T00:00:00%27%20AND%20first_crash_type=%20%27PEDALCYCLIST%27'
+url = 'https://data.cityofchicago.org/resource/85ca-t3if.json?$$app_token=<API TOKEN>&$where=crash_date%20between%20%272021-01-01T00:00:00%27%20and%20%272022-01-01T00:00:00%27%20AND%20first_crash_type=%20%27PEDALCYCLIST%27'
 crashes=pd.read_json(url)
 crashes.columns
 crashes.info()
