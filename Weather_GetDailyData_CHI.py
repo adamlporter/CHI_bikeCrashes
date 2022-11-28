@@ -53,7 +53,7 @@ with open('processedData.json','r') as fin:
 # I'm going to use the numpy library's date functions
 lastDate = ProcessedData[-1]['date'] # get the last date as a string
 
-# find the next date and use that as the date to start 
+# find the next date and use that as the date+1 to start 
 d_start = np.datetime64(lastDate) + np.timedelta64(1,'D')
 
 # date to end is 3 months beyond this
